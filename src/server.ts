@@ -1,8 +1,11 @@
 import express from "express"
 
-import "./database"
+import "./database";
+import { routes } from "./routes"; 
 
 const app = express()
+
+app.use(express.json());
 
 app.get("/", (request, response) => {
     return response.json({
@@ -10,6 +13,7 @@ app.get("/", (request, response) => {
       date: new Date().toISOString()
     })
 })
+app.use(routes);
 
 app.post("/", (request, response) => {
   return response.json({ message: "Usuario salvo com sucesso!"});
